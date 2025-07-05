@@ -7,7 +7,9 @@ from ollama import ChatResponse
 
 # Run Redis server locally
 pool = redis.ConnectionPool(host="localhost", port=6379, db=0)
-r = redis.Redis(connection_pool=pool, decode_responses=True) # Decode responses to strings
+r = redis.Redis(
+    connection_pool=pool, decode_responses=True
+)  # Decode responses to strings
 
 app = Flask(__name__)
 
@@ -41,7 +43,9 @@ def send_message():
 
     return jsonify({"to": to, "response": ai_response})
 
+
 # Get the last 10 messages of a conversation
+# Usage http://127.0.0.1:5000/history?to=5515996620252
 @app.route("/history", methods=["GET"])
 def get_messages():
     to = request.args.get("to")
@@ -51,4 +55,6 @@ def get_messages():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True) # debug=True for development (auto-reload), use debug=False in production 
+    app.run(
+        host="0.0.0.0", port=5000, debug=True
+    )  # debug=True for development (auto-reload), use debug=False in production
