@@ -65,5 +65,5 @@ def get_messages():
 
 if __name__ == "__main__":
     app.run(
-        host="0.0.0.0", port=5000, debug=True
+        host="0.0.0.0", port=5000, debug=False
     )  # debug=True for development (auto-reload), use debug=False in production
